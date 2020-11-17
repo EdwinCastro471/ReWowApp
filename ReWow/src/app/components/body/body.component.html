@@ -1,0 +1,47 @@
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="petOwner"><strong>Pet Owner:</strong> &nbsp;</label>
+            <label for="petOwner">{{ user.firstName }}</label>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="petName"><strong>Pet Name:</strong></label>
+            <input type="text" class="form-control" id="inputPetName" [value]="pet.name" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPetTypes"><strong>Pet Type:</strong></label>
+        <select class="custom-select">
+      <option>{{petType.type}}</option>
+      <option *ngFor="let petList of petTypes" [value]="petList">
+        {{ petList }}
+      </option>
+    </select>
+    </div>
+    <div class="form-group">
+        <label for="inputPetSize"><strong>Pet Size:</strong></label>
+        <div *ngFor="let sizeList of petSize">
+            <input type="radio" aria-label="Radio button for following text input" name="sizeList" [value]="pet.size" [checked]="pet.size === sizeList" />
+            <label class="form-check-label"> &nbsp; {{ sizeList }} </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputDescription"><strong>Description:</strong></label>
+        <textarea class="form-control" id="petDescription" rows="3">{{
+      pet.description
+    }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="inputVaccinations"><strong>Vaccinations:</strong></label>
+        <ul class="list-group" *ngFor="let vaccinationsList of arrayVaccinations">
+            <li class="list-group-item">
+                <div>Number: {{ vaccinationsList.number }}</div>
+                <div>Type: {{ vaccinationsList.type }}</div>
+                <div>Date: {{ vaccinationsList.date | date: "short" }}</div>
+            </li>
+        </ul>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
